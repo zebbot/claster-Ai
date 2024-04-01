@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Chat Bot</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://gist.github.com/zebbot/ade20acc53e0ac39446f56278fcf8c56.js">
+</head>
+<script src="https://kit.fontawesome.com/443ff7cc31.js" crossorigin="anonymous"></script>
+<body>
+    <div class="js" >
+  <div class="containermt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div id="chatContainer" ></div>
+        <div class="form-group mt-3">
+          <input type="text" id="message" class="form-control" placeholder="Ask Your Question..." >
+          <i class="fa fa-search" aria-hidden="true" id="sendBtn" class="btn btn-primary" onclick="attempt()"></i>
+        </div>
+        <center>
+        <button id="sendBtn" class="btn btn-primary" onclick="clickButton1()" >Send</button></center>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    // Function to handle click on button 1
+    function clickButton1() {
+      // Trigger click event on button 2
+      document.getElementById('sendBtn').click();
+    }
+   
+  </script>
+  <script> var inputField = document.getElementById('sendBtn');
+    function handleEnterKeyPress(event) {
+    if (event.key === "Enter") {
+      // Call your function here
+      clickButton1();
+    }
+  }
+  inputField.addEventListener("keypress", handleEnterKeyPress);</script>
+  <script>
+    // testing
+    $(document).ready(function() {
+      
+      $('#sendBtn').click(function() {
+        var message = $('#message').val().trim();
+        if (message !== '') {
+          displayUserMessage(message);
+          $('#message').val('');
+          
+
+          // Simulate bot response
+          $('#chatContainer').append('<div class="bot-message">Trying...</div>');
+          $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
+          setTimeout(function() {
+            botResponse(message);
+          }, 100); // 5 seconds delay
+        }
+      });
+
+      function displayUserMessage(message) {
+        $('#chatContainer').append('<div class="user-message">' + message + '</div>');
+        // $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);   not good for sceolltop
+      }
+
+      function botResponse(message) {
+        // Customize questions and answers
+        switch (message.toLowerCase()) {
+          case 'hi':
+          case 'hello':
+            $('#chatContainer').append('<div class="bot-message">Wings : Hello there! How Can Help Today</div>');
+            break;
+            case 'name':
+          case 'what is your nice name':
+          case 'what is your name':
+            $('#chatContainer').append('<div class="bot-message">Wings : My name is Wing</div>');
+            break;
+            case 'ok':
+          case 'thanks':
+          case 'wings':
+            $('#chatContainer').append('<div class="bot-message"><b>Wings</b> : Thanks for using Wings. Ask Any Question</div>');
+            break;
+            case 'what is my name':
+          case 'my name':
+          case 'tell me my name':
+            $('#chatContainer').append('<div class="bot-message"><b>Wings</b>I do not recall your name, but if you told me earlier, I can not access that information anymore.  Is there anything else I can help you with?</div>');
+            break;
+            case 'your age':
+          case 'who create you':
+          case 'your owner':
+            $('#chatContainer').append('<div class="bot-message"><b>Wings</b> : Hello😊, I am Wing-Ai Created by <a href="www.claster.online">claster.online</a> i am 10days old create on 1/02/2024</div>');
+            break;
+            case 'image':
+            case 'images':
+            case '.':
+            var googleSearchUrl = 'https://www.lexica.art/' + encodeURIComponent(message);
+            $('#chatContainer').append('<iframe src="' + googleSearchUrl + '" style="width: 100%; height: 300px; border: none;"></iframe>');
+          $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);  //scroll control
+          break;
+            case 'boy':
+          case 'are you boy or girl':
+          case 'gender':
+            $('#chatContainer').append('<div class="bot-message"><b>Wings</b> : Hello😊, I Am boy ');
+           
+
+            break;
+          default:
+            // Search Google for the question
+            var googleSearchUrl = 'https://www.bing.com/search?q=' + encodeURIComponent(message);
+            $('#chatContainer').append('<iframe src="' + googleSearchUrl + '" style="width: 100%; height: 300px; border: none;"></iframe>');
+          $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);  //scroll control
+            
+            break;
+
+            
+        }
+      }
+    });
+    
+  </script>
+  <script>
+    let clickCount = 0;
+    function attempt() {
+        clickCount++;
+       if(clickCount=== 100){
+        window.location.href = "https://www.claster.online/about";
+       }
+    }
+  </script>
+</body>
+</html>
